@@ -1,0 +1,83 @@
+<html>
+<head>
+
+	 <meta charset="UTF-8">
+    <title>Internetshop</title>    
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript">
+
+
+
+	function showDetails(id)
+	{
+		var mydiv = document.getElementById(id);
+		if (mydiv.style.display == "none")
+			mydiv.style.display = "block";
+	    else
+			mydiv.style.display = "none";
+	}
+	
+	var orgImageSource;
+	var lastNumber = "";
+	
+	function onBodyLoad()
+	{
+		var myimg = document.getElementById("productImage");
+		orgImageSource = myimg.src;
+		var myinput = document.getElementById("txtNumber");
+		lastNumber = myinput.value;
+	}
+	
+	function imageOver(myimg)
+	{
+		myimg.src = "http://s8.postimage.org/44u3hjjjp/I_MUST_DANCE.jpg";
+	}
+	
+	function imageOut(myimg)
+	{
+		myimg.src = orgImageSource;
+	}
+	
+	function buy()
+	{
+		var mychart = document.getElementById("cart");
+		var mytitle = document.getElementById("prodTitle");
+		var mynumber = document.getElementById("txtNumber");
+		var newli = document.createElement('li');
+		newli.innerHTML = mynumber.value + " " + mytitle.innerHTML;
+		mychart.appendChild(newli);
+	}
+	
+	function validateInput(ctrl)
+	{
+		if (isNaN(ctrl.value))
+			ctrl.value = lastNumber;
+		else
+			lastNumber = ctrl.value;
+			
+	}
+	
+	</script>
+	
+</head>
+<body onload="onBodyLoad()">
+		<div id="wrapper">
+<h1>VÄLJ KATEGORI</h1>
+<div name="prodInfo">
+	<h3 id="prodTitle">Kategorier</h3>
+	<p>Kategori 1</p>
+
+	<a href="produkter.html"> 
+	<img id="productImage" src="http://s8.postimage.org/5iqbql86t/No_I_must_dance.jpg" height="200" width="300"
+	   onmouseout="imageOut(this)" onmouseover="imageOver(this)"></a>
+
+	   <p>Kategori 2</p>
+	   <a href="produkter.html"> 
+	<img id="productImage" src="http://s8.postimage.org/5iqbql86t/No_I_must_dance.jpg" height="200" width="300"
+	   onmouseout="imageOut(this)" onmouseover="imageOver(this)"></a>
+	 
+	   <br><br><br>
+
+</body>
+</html>

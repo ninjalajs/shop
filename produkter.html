@@ -1,0 +1,94 @@
+<html>
+<head>
+
+	 <meta charset="UTF-8">
+    <title>Internetshop</title>    
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+	<script type="text/javascript">
+
+	function showDetails(id)
+	{
+		var mydiv = document.getElementById(id);
+		if (mydiv.style.display == "none")
+			mydiv.style.display = "block";
+	    else
+			mydiv.style.display = "none";
+	}
+	
+	var orgImageSource;
+	var lastNumber = "";
+	
+	function onBodyLoad()
+	{
+		var myimg = document.getElementById("productImage");
+		orgImageSource = myimg.src;
+		var myinput = document.getElementById("txtNumber");
+		lastNumber = myinput.value;
+	}
+	
+	function imageOver(myimg)
+	{
+		myimg.src = "http://s8.postimage.org/44u3hjjjp/I_MUST_DANCE.jpg";
+	}
+	
+	function imageOut(myimg)
+	{
+		myimg.src = orgImageSource;
+	}
+	
+	function buy()
+	{
+		var mycart = document.getElementById("cart");
+		var mytitle = document.getElementById("prodTitle");
+		var mynumber = document.getElementById("txtNumber");
+		var newli = document.createElement('li');
+		newli.innerHTML = mynumber.value + " " + mytitle.innerHTML;
+		mycart.appendChild(newli);
+	}
+	
+	function validateInput(ctrl)
+	{
+		if (isNaN(ctrl.value))
+			ctrl.value = lastNumber;
+		else
+			lastNumber = ctrl.value;
+			
+	}
+	
+	</script>
+	
+</head>
+<body onload="onBodyLoad()">
+		<div id="wrapper">
+<h1>Välj produkt</h1>
+<div name="prodInfo">
+	<h3 id="prodTitle">Armeringsjärn</h3>
+	<img id="productImage" src="http://s8.postimage.org/5iqbql86t/No_I_must_dance.jpg" height="200" width="300"
+	   onmouseout="imageOut(this)" onmouseover="imageOver(this)">
+	  
+	<p>
+	<a href="#" onclick="showDetails('productDetails1'); return false;";>Mer info</a>
+	<div id="productDetails1" class="info" style="display: none" >
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque lacinia dolor ornare augue dapibus pellentesque ut at nisi. Maecenas mattis faucibus ornare. Ut malesuada posuere mauris vitae vestibulum. Sed fermentum adipiscing faucibus. Nullam accumsan feugiat purus, et condimentum lorem scelerisque nec. Vivamus convallis turpis non tortor egestas tincidunt. Maecenas volutpat posuere metus, in sagittis velit interdum eu. Vivamus consequat molestie tempus. Nam tristique neque metus, vitae sodales metus. Mauris in laoreet mauris. 
+		 
+		<a href="#" onclick="showDetails('productDetails1'); return false;";>Stäng</a>
+	</div>
+	Antal: <input type="text" onkeyup="validateInput(this);" value="1" id="txtNumber"></input>
+	<input type="button" onclick="buy();" value="BUY"></input>
+	</p>
+</div>
+<div name="cart">
+	<div>Cart:
+		<ul id="cart">
+		</ul>
+	</div>
+	<a href="#" ></>
+<div>
+	
+<form method="post" action="kategorier.html">
+	<input type="submit" value="<< Tillbaka till kategorierna"></input></form>
+<form method="post" action="betalning.html">
+	<input type="submit" value="Till betalning >>"></input></form>
+</body>
+</html>
