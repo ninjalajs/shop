@@ -5,6 +5,7 @@
     <title>Internetshop</title>    
 
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="store.js"></script>
 	<script type="text/javascript">
 
 	function showDetails(id)
@@ -18,6 +19,7 @@
 	
 	var orgImageSource;
 	var lastNumber = "";
+	var cart;
 	
 	function onBodyLoad()
 	{
@@ -25,6 +27,16 @@
 		orgImageSource = myimg.src;
 		var myinput = document.getElementById("txtNumber");
 		lastNumber = myinput.value;
+
+		cart = store.get('cart');
+		if (cart) {
+			for (var i = 0; i < cart.length; i++) {
+				insertCartItem(cart[i].value, cart[i].title);		
+			}
+		} else {
+			cart = [];
+			store.set('cart', cart);
+		}
 	}
 	
 	function imageOver(myimg)
@@ -36,15 +48,21 @@
 	{
 		myimg.src = orgImageSource;
 	}
+
+	function insertCartItem(value, title) {
+		var mycart = document.getElementById("cart");
+		var newli = document.createElement('li');
+		newli.innerHTML = value + " " + title;
+		mycart.appendChild(newli);
+	}
 	
 	function buy()
 	{
-		var mycart = document.getElementById("cart");
-		var mytitle = document.getElementById("prodTitle");
-		var mynumber = document.getElementById("txtNumber");
-		var newli = document.createElement('li');
-		newli.innerHTML = mynumber.value + " " + mytitle.innerHTML;
-		mycart.appendChild(newli);
+		var mytitle = document.getElementById("prodTitle").innerHTML;
+		var mynumber = document.getElementById("txtNumber").value;
+		cart.push({value: mynumber, title: mytitle});
+		store.set('cart', cart);
+		insertCartItem(mynumber, mytitle);
 	}
 	
 	function validateInput(ctrl)
