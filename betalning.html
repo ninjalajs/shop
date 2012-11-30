@@ -17,6 +17,14 @@
 		}
 	}
 
+	 function showDetails(id) {
+	  var mydiv = document.getElementById(id);
+	  if (mydiv.style.display == "none")
+	    mydiv.style.display = "block";
+	    else
+	    mydiv.style.display = "none";
+	}
+
 	function insertCartItem(value, title) {
 		var mycart = document.getElementById("cart");
 		var newli = document.createElement('li');

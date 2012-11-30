@@ -6,6 +6,7 @@
 	padding: 2px 20px;
 	border-radius: 8px;
 	border: 1px solid silver;
+	text-align: center;
 }
 
 .info {
@@ -24,6 +25,8 @@
 	border-bottom-right-radius: 8px;
 	border-bottom-left-radius: 8px;
 	box-shadow: rgba(0, 0, 0, 0.0980392) 0px 2px 2px;
+	margin: 0 auto;
+	margin-bottom: 20px;
 }
 
 .cover {
@@ -41,3 +44,13 @@ font-family: cambria;
 font-size: 34px;
 }
 
+img {
+	border: 10px solid #fff;
+	background: #fff;
+	box-shadow: 0 4px 4px #333;
+	border-radius: 10px;
+}
+
+li {
+	list-style: none;
+}

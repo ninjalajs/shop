@@ -1,0 +1,113 @@
+<html>
+<head>
+
+	 <meta charset="UTF-8">
+    <title>Internetshop</title>    
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="store.js"></script>
+	<script type="text/javascript">
+
+	function showDetails(id)
+	{
+		var mydiv = document.getElementById(id);
+		if (mydiv.style.display == "none")
+			mydiv.style.display = "block";
+	    else
+			mydiv.style.display = "none";
+	}
+	
+	var orgImageSource;
+	var lastNumber = "";
+	var cart;
+	
+	function onBodyLoad()
+	{
+		var myimg = document.getElementById("productImage");
+		orgImageSource = myimg.src;
+		var myinput = document.getElementById("txtNumber");
+		lastNumber = myinput.value;
+
+		cart = store.get('cart');
+		if (cart) {
+			for (var i = 0; i < cart.length; i++) {
+				insertCartItem(cart[i].value, cart[i].title);		
+			}
+		} else {
+			cart = [];
+			store.set('cart', cart);
+		}
+	}
+	
+	function imageOver(myimg)
+	{
+		myimg.src = "http://www.bilddump.se/bilder/20121130084758-46.195.22.228.png";
+	}
+	
+	function imageOut(myimg)
+	{
+		myimg.src = orgImageSource;
+	}
+
+	function insertCartItem(value, title) {
+		var mycart = document.getElementById("cart");
+		var newli = document.createElement('li');
+		newli.innerHTML = value + " " + title;
+		mycart.appendChild(newli);
+	}
+	
+	function buy()
+	{
+		var mytitle = document.getElementById("prodTitle").innerHTML;
+		var mynumber = document.getElementById("txtNumber").value;
+		cart.push({value: mynumber, title: mytitle});
+		store.set('cart', cart);
+		insertCartItem(mynumber, mytitle);
+	}
+	
+	function validateInput(ctrl)
+	{
+		if (isNaN(ctrl.value))
+			ctrl.value = lastNumber;
+		else
+			lastNumber = ctrl.value;
+			
+	}
+	
+	</script>
+	
+</head>
+<body onload="onBodyLoad()">
+		<div id="wrapper">
+<h1>Kläder</h1>
+<div name="prodInfo">
+	<h3 id="prodTitle">Klänning</h3>
+	<img id="productImage" src="http://www.bilddump.se/bilder/20121130102048-46.195.22.228.jpg" height="200" width="300"
+	   onmouseout="imageOut(this)" onmouseover="imageOver(this)">
+	  
+	<p>
+	<a href="#" onclick="showDetails('productDetails1'); return false;";>Mer info</a>
+	<div id="productDetails1" class="info" style="display: none" >
+		Klänning är ett klädesplagg, som sträcker sig högre upp på kroppen än en kjol. Kjolen går upp till midjan, medan klänningen sitter ovanför bysten. Om kjolen är skild från livet talar man om en tudelad klänning.
+		En klänning kan antingen ha eller sakna ärmar. En ärmlös klänning för sommarbruk kallas ofta solklänning. Om en ärmlös klänning är avsedd att bäras ovanpå en topp, blus eller skjorta kan den kallas för hängselklänning eller förklädesklänning.
+		 
+		<a href="#" onclick="showDetails('productDetails1'); return false;";>Stäng</a>
+	</div>
+	Antal: <input type="text" onkeyup="validateInput(this);" value="1" id="txtNumber"></input>
+	<input type="button" onclick="buy();" value="BUY"></input>
+	</p>
+</div>
+<div name="cart">
+	<div>Cart:
+		<ul id="cart">
+		</ul>
+	</div>
+	<a href="#" ></>
+<div>
+	
+<form method="post" action="produkter.html">
+	<input type="submit" value="<< Tillbaka till produktlista"></input></form>
+<form method="post" action="betalning.html">
+	<input type="submit" value="Till betalning >>"></input></form>
+</body>
+</html>

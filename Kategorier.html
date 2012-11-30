@@ -5,6 +5,7 @@
     <title>Internetshop</title>    
 
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/javascript" src="jquery.js"></script>
 	<script type="text/javascript">
 
 
@@ -18,44 +19,20 @@
 			mydiv.style.display = "none";
 	}
 	
-	var orgImageSource;
-	var lastNumber = "";
-	
 	function onBodyLoad()
 	{
-		var myimg = document.getElementById("productImage");
-		orgImageSource = myimg.src;
-		var myinput = document.getElementById("txtNumber");
-		lastNumber = myinput.value;
+
 	}
 	
 	function imageOver(myimg)
 	{
-		myimg.src = "http://s8.postimage.org/44u3hjjjp/I_MUST_DANCE.jpg";
+		$(myimg).data('orgImageSource', myimg.src);
+		myimg.src = "http://www.bilddump.se/bilder/20121130101810-46.195.22.228.jpg";
 	}
 	
 	function imageOut(myimg)
 	{
-		myimg.src = orgImageSource;
-	}
-	
-	function buy()
-	{
-		var mychart = document.getElementById("cart");
-		var mytitle = document.getElementById("prodTitle");
-		var mynumber = document.getElementById("txtNumber");
-		var newli = document.createElement('li');
-		newli.innerHTML = mynumber.value + " " + mytitle.innerHTML;
-		mychart.appendChild(newli);
-	}
-	
-	function validateInput(ctrl)
-	{
-		if (isNaN(ctrl.value))
-			ctrl.value = lastNumber;
-		else
-			lastNumber = ctrl.value;
-			
+		myimg.src = $(myimg).data('orgImageSource');
 	}
 	
 	</script>
@@ -66,15 +43,15 @@
 <h1>VÄLJ KATEGORI</h1>
 <div name="prodInfo">
 	<h3 id="prodTitle">Kategorier</h3>
-	<p>Kategori 1</p>
+	<p>Kläder</p>
 
 	<a href="produkter.html"> 
-	<img id="productImage" src="http://s8.postimage.org/5iqbql86t/No_I_must_dance.jpg" height="200" width="300"
+	<img id="productImage" src="http://www.bilddump.se/bilder/20121130090314-46.195.22.228.jpeg" height="200" width="300"
 	   onmouseout="imageOut(this)" onmouseover="imageOver(this)"></a>
 
-	   <p>Kategori 2</p>
-	   <a href="produkter.html"> 
-	<img id="productImage" src="http://s8.postimage.org/5iqbql86t/No_I_must_dance.jpg" height="200" width="300"
+	   <p>Skor</p>
+	   <a href="produkter3.html"> 
+	<img id="productImage" src="http://www.bilddump.se/bilder/20121130085602-46.195.22.228.jpeg" height="200" width="300"
 	   onmouseout="imageOut(this)" onmouseover="imageOver(this)"></a>
 	 
 	   <br><br><br>
