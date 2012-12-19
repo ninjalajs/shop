@@ -32,10 +32,10 @@
 .cover {
 	position: absolute;
 	top: 20px;
-	bottom: 20px;
 	left: 20px;
 	right: 20px;
 	width: auto;
+	padding-bottom: 50px;
 }
 
 .order {
@@ -53,4 +53,8 @@ img {
 
 li {
 	list-style: none;
+}
+
+#reset-cart {
+	margin-bottom: 20px;
 }

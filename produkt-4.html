@@ -6,6 +6,8 @@
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript" src="store.js"></script>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="cart.js"></script>
 	<script type="text/javascript">
 
 	function showDetails(id)
@@ -60,7 +62,8 @@
 	{
 		var mytitle = document.getElementById("prodTitle").innerHTML;
 		var mynumber = document.getElementById("txtNumber").value;
-		cart.push({value: mynumber, title: mytitle});
+		var price = parseInt(document.getElementById("price").innerHTML)
+		cart.push({value: mynumber, title: mytitle, price: price});
 		store.set('cart', cart);
 		insertCartItem(mynumber, mytitle);
 	}
@@ -82,6 +85,7 @@
 <h1>Skor</h1>
 <div name="prodInfo">
 	<h3 id="prodTitle">Nitskor</h3>
+	<h4 id="price">138 kr</h4>
 	<img id="productImage" src="http://www.bilddump.se/bilder/20121130085920-46.195.22.228.jpeg" height="200" width="300"
 	   onmouseout="imageOut(this)" onmouseover="imageOver(this)">
 	  

@@ -5,6 +5,8 @@
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript" src="store.js"></script>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="cart.js"></script>
 	<script type="text/javascript">
 	
 	function onBodyLoad()
@@ -15,6 +17,17 @@
 				insertCartItem(cart[i].value, cart[i].title);		
 			}
 		}
+	}
+
+	function generateReceipt() {
+		$('#name').text($('#firstname').val());
+		$('#epost').text($('#email').val());
+		$('#ordernummer').text(Math.round(Math.random()*10000000));
+		var sum = 0;
+		for (var i = 0; i < cart.length; i++) {
+			sum += cart[i].price * cart[i].value;
+		}
+		$('#summa').text(sum);
 	}
 
 	 function showDetails(id) {
@@ -59,13 +72,13 @@
 	Vänligen fyll i dina uppgifter <br><br>
 
 		<form>
-		First name: <input type="text" name="firstname">*<br> 
+		First name: <input type="text" name="firstname" id="firstname">*<br> 
 		Last name: <input type="text" name="lastname">*<br>
 		Adress: <input type="text" name="adress">*<br>
 		Co-adress: <input type="text" name="Coadress">*<br>
 		Postnummer: <input type="text" onkeyup="validateInput(this);" value="" id="txtNumber"></input>*<br>
 		Stad: <input type="text" name="Stad">*<br>
-		E-post: <input type="text" name="kortnummer">*<br>
+		E-post: <input type="text" name="kortnummer" id="email">*<br>
 		</form> 
 <br>
 
@@ -113,7 +126,7 @@
 
 
 	<p>
-	<a href="#" onclick="showDetails('slutforkop'); return false;";><form method="post" action="betalning.html"> <input type="submit" value="Slutför köp >>"></input></form></a>
+	<a href="#" onclick="generateReceipt(); showDetails('slutforkop'); return false;";><form method="post" action="betalning.html"> <input type="submit" value="Slutför köp >>"></input></form></a>
 	<div id="slutforkop" class="info cover order" style="display: none" >
 
 		<h1>Tack för din beställning!</h1><br>
@@ -121,10 +134,10 @@
 	En bekräftelse har skickas till din e-post.<br>
 
 	Här är dina uppgifter<br><br>
-	NAMN:<br>
-	E-POST:<br>
-	ORDERNUMMER:<br>
-	SUMMA: <br><br>
+	NAMN: <span id="name"></span><br>
+	E-POST: <span id="epost"></span><br>
+	ORDERNUMMER: <span id="ordernummer"></span><br>
+	SUMMA: <span id="summa"></span><br><br>
  
 		<a href="#" onclick="showDetails('slutforkop'); return false;";>Stäng</a>
 	</div>
