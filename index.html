@@ -6,8 +6,9 @@
 
     <link rel="stylesheet" type="text/css" href="style.css">
     <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="jquery.validate.js"></script>
     <script type="text/javascript" src="store.js"></script>
-    <script src="https://raw.github.com/flatiron/director/master/build/director.min.js"></script>
+    <script type="text/javascript" src="director.min.js"></script>
     <script type="text/javascript">
 
     var currentProductId = 0;
@@ -34,7 +35,9 @@
     var router = Router(routes);
     router.init('/categories');
 
-
+    $(function(){
+      $('#checkout-form').validate();
+    });
 
     function showDetails(id)
     {
@@ -272,14 +275,14 @@
 
       Vänligen fyll i dina uppgifter <br><br>
 
-      <form>
-        First name: <input type="text" name="firstname" id="firstname">*<br> 
+      <form id='checkout-form'>
+        First name: <input type="text" name="firstname" id="firstname" class="required">*<br> 
         Last name: <input type="text" name="lastname">*<br>
         Adress: <input type="text" name="adress">*<br>
         Co-adress: <input type="text" name="Coadress">*<br>
         Postnummer: <input type="text" onkeyup="validateInput(this);" value="" id="txtNumber"></input>*<br>
         Stad: <input type="text" name="Stad">*<br>
-        E-post: <input type="text" name="kortnummer" id="email">*<br>
+        E-post: <input type="text" name="kortnummer" id="email" class="email required">*<br>
       </form> 
       <br>
     <div>
