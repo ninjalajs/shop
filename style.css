@@ -55,6 +55,11 @@ li {
 	list-style: none;
 }
 
-#reset-cart {
-	margin-bottom: 20px;
+#cart-wrapper {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	width: 200px;
+	background-color: #666;
+	color: white;
 }
